@@ -75,6 +75,12 @@ Dahili osilatör mü kararlı harici osilatör mü?
 
 - Timerlar bir sayaç registerları. 
 - SysTick timer çekirdekten geliyor. Tüm arm işlemcilerinde var. Fakat diğer timerları ST firması eklemiş.
+
+ ![image](https://user-images.githubusercontent.com/75746171/142450446-c7eb2960-3ac3-45b5-a360-85bd8cd82910.png)
+
+8x16= 128 mb
+
+- İlk 128 mb bölümü gerçekte var olan bir bellek değil. Flash memorynin bir kopyası da burada bulunuyor. Duruma göre başka bir alanı içeriyor. Yani burada bir memory yok başka bir adresteki değer burada da gözüküyor.
 - 
 
 
