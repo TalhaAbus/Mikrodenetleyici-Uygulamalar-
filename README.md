@@ -162,9 +162,14 @@ I/O portu: Lojik seviyede 0 ve 1 haberleşmes iiçin giriş çıkış içinç ku
 Open drain ne zaman kjullanılıyor?
 - 2 durumlu haberleşme. Bazı haberleşme protokolleri 2 durumlu kullanılıyor. (ı2c) Hiçbir zaman taraflar çıkış 1 durumunu kullanöıyor.
 
+Ders 4 )(07.01.2022)
+---
 
+![image](https://user-images.githubusercontent.com/75746171/148546470-55ea7965-4493-4c3d-9db6-96d05446dfd0.png)
 
+Buradaki offset aslında o structer'ın neresinde olduğunu gösteriyor.
 
+Offset: bir nokta referans alınarak o noktadan ne kadar uzak olduğunu belirleme.
 
 
 
