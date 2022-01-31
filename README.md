@@ -171,6 +171,92 @@ Buradaki offset aslında o structer'ın neresinde olduğunu gösteriyor.
 
 Offset: bir nokta referans alınarak o noktadan ne kadar uzak olduğunu belirleme.
 
+Ders 6-A
+---
+Multitasking
+
+RTOS sistemleri multitasking'i etkin bir biçimde yapılmasını sağlıyor.
+
+- Paralal olarak yapılabilir. YAni her bir görev farklı bir işlemci tarafından gerçekleştirilebilir.
+- Yani Birden fazla işlem aynı işlemci taraf-fından yapılıyor olabilir.
+ 
+
+![image](https://user-images.githubusercontent.com/75746171/151873516-3bed6b94-d85c-42ab-a060-70bcca9b48e3.png)
+
+RTOS Sistemlerin en önemli özelliği de olayların gerçekleşmesi ile işlenme zamanları arasında geçen süreyi minimum tutarak Kısa zamanda işlemek.
+
+RTOS sistemleri avantaj ve dezavantajları
+---
+- Gerçek zamanlı çalışma
+- Hazır sistem fonksiyonları
+- Sistemi çok iyi bilmeliyiz. RTOS ta sistem çok iyi bilinmiyorsa verim alınamaz.
+- RTOS da cpu nun core sistemi RTOS un kontrolünde. Ayrıcalıklı çalışmaya izin vermeyecek.
+- non-rtos sistemde tüm sistmee hakimiz fakat diğer tarafta sistemin kritik özellikleri RTOS'a devredilmiş.
+
+Interrupt
+---
+
+Olay >>> İşlem
+
+Bir olay ve olayın  gerçekleşmesi
+Sıcaklık 30 dereceyi geçince ocağı aç.
+
+![image](https://user-images.githubusercontent.com/75746171/151876483-feae2511-73c8-4d7d-a812-c3f70f9a73b1.png)
+
+- Proc_A içindeyken ProcF yi çalıştırmayı gereken bir durum oldu.
+- Burada interrupt devreye giriyor. Bu aslında var olmayan bir alt programın çağırılmasıyla olay orada işleniyor ve kaldığı yerden devam ediyor.
+- Yani kesme nedir? Bir olay ile bağlantılı olarak o olayın işlenmesi için bir alt programın çağrılmasıdır.
+
+Kesme kaynağı : Bir olayın kesme oluşturabilme özelliği varsa kesme kaynağıdır.
+
+![image](https://user-images.githubusercontent.com/75746171/151877338-95952cba-4bdb-4963-8677-611d88b5a935.png)
+
+- Interrupt mekanizmasının kullanabilmesi için bir kesme kaynağının işlemcinin kesme yöneticisine (NVIC) bağlanmış olması lazım. 
+
+ISR (Interrup Service Routine)
+---
+Olay >>> işlem
+
+- Buradaki işlemin alt programı ISR dir. Yani olay gerçekleştiğinde çalşacak olan alt program bizim ISR'miz.
+
+Handler: Bir olayı işleyen fonksiyondur.
+ISR: KEsme işleyen fonksiyondur.
+
+Her ISR bir handler fakat her handler bir ISR değil.
+
+IRQ (Interrupt Request)
+---
+![image](https://user-images.githubusercontent.com/75746171/151879427-0ae32c0e-cb98-408d-ab70-f040dbd66f1d.png)
+
+- Koşulların tünmü sağlanıyorsa NVIC e bir başvuru yapılıyor. Controller da duruma göre (Interrupt Priority)
+
+Interrupt vector
+---
+- Olay gerçekleşiyor fakat olay gerçekleşince nereye gideceğini nereden biliyor?
+- Olaylar ve kesme kaynağı (interrupt source) ilişkilendirmesini biz yapanmıyoruz. Bunlar donanımsal olarak ayarlanmış.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
