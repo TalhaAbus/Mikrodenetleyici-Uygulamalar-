@@ -236,6 +236,7 @@ Interrupt vector
 - Olaylar ve kesme kaynağı (interrupt source) ilişkilendirmesini biz yapanmıyoruz. Bunlar donanımsal olarak ayarlanmış.
 
 
+2.13
 
 
 
@@ -244,8 +245,7 @@ Interrupt vector
 
 
 
-
-
+ 
 
 
 
