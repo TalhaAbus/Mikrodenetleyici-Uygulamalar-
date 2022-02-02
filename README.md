@@ -236,26 +236,87 @@ Interrupt vector
 - Olaylar ve kesme kaynağı (interrupt source) ilişkilendirmesini biz yapanmıyoruz. Bunlar donanımsal olarak ayarlanmış.
 
 
-2.13
+![image](https://user-images.githubusercontent.com/75746171/152142910-79b9121c-7e1e-4697-9fa5-ba3cd880f6ae.png)
+
+Buraya kulalnmadığımız çevresel birimleri de dahil etseydik bir zararı olmazdı. Çünkü bu linkerlar akıllı. Kullanılmayan fonksiyonları koda dahil etmiyorlar.
+
+Real time:
+---
+Biz uygulamalarda yaptığımız işlem hep bir olay ve olayın işlenmesi şeklinde gerçekleşir.
+
+![image](https://user-images.githubusercontent.com/75746171/152150640-7918d119-95d9-4ec1-a140-37ae8a5a6509.png)
+
+Olay 9 öncelikli ise olay 2 işlenirken işlem 2 den mümkün olduğunca kısa szamanda çıkarak olay 9 a geçer.
+
+Real time sistem dediğimiz zaman olay ve işleme zamanının önceliğin de göz önüne alınarak kısa tutulması.
+Oay ve oalyın işlenmesi arasındaki süreç uzuyorsa real time'dan uzaklaşıyoruz demektir.
+RTOS da olayların mümkün olduğunca az gecikme ile işlenmesi hedeflenir. Fakat birden fazla olay aynı zamanda meydana gelebileceği için önceliklere uygun olarak en az gecikme ile gerçekleşir.
+
+Haberleşme
+---
+Gömülü sistemlerde haberleşme dahili ya da harici olarak yapılabilir
+
+Sistemin kendi içinde haberleşmesi ve başka bir sistemle haberleşmesi.
+
+Haberleşme seri ya da paralel olabilir.
+
+Seri: Aynı zaman diliminde tek bir bit verinin gönderilmesi.
+Paralel: n-bit
+
+SDIO, HD44780, Memory controler - Paralel haberleşme
+Usart/UART, SPI, I2C - Seri Haberleşme
+
+![image](https://user-images.githubusercontent.com/75746171/152194150-492e4ed5-5cfa-4508-8311-bcd6f36818fa.png)
+
+![image](https://user-images.githubusercontent.com/75746171/152195775-57443dbe-6483-472e-8215-83b3de6a29ef.png)
+
+Başlatma yetkisi olan: Master Device
+
+Sadece cevap yetkisi olan: Slave Device
+
+En basit: telefon haberleşmesi. Arayan taraf master cevap veren slave.
+USB haberleşmesinde PC'deki portumuz master olan host portu. Cihaz ise slave.
+
+Senkron haberleşme: Ortak saat kullanımı
+Asenkron haberleşme: Kendi saatlerini kullanma
+
+![image](https://user-images.githubusercontent.com/75746171/152198168-66a7a490-f933-4d39-90ff-0d4dfc91f5d9.png)
 
 
+![image](https://user-images.githubusercontent.com/75746171/152198527-13725ec1-a876-4cc8-9f12-ffb067ea5e2a.png)
 
+Kontrol uçlaından 1 tansini adres - data seçimi için kullanarak aynı veri yolu adres ve veri iletimi olarak kullanılması yaygın bir uygulama.
 
+Neden senkron haberleşme deniliyor?
+---
+Veri hazırlandığı zaman B tarafı veriyi hemen kabul etmez. Kabul edilmesi için clock hattında yükselen kenar(örneğin) oluştuğunda bu onay anlamına gelir. B tarafı yükselen kenarı gördüğünde veriyi kabul eder. Bu onaylama mekanizması senkron haberleşmenin ana ilkesidir. Saat işaretini üreten taraf master device. 
 
+1 Adım veri, senkron haberleşme kaç bir yapılıyorsa o kadar bit veri gönderilmesi demek.
 
+1. ;Data Setup (Verinin hazırlanması)
+2. Clock Generation (Saat işaretinin üretilmesi)
+Saat işaretinin buradaki anlamı onaylama.
+Veri hazırlanırken karşı taraf almaya kalkarsa yanlış veri gidebilir.
 
+![image](https://user-images.githubusercontent.com/75746171/152201677-22356c5c-ea4e-4efc-8226-75a2a906694a.png)
 
- 
+Veri clock tan önce gelmelidir.
 
+Delay fonksiyonu
+---
+![image](https://user-images.githubusercontent.com/75746171/152202158-9a44724c-e096-4a0f-b092-564ee2d3c168.png)
 
+Bekleme süresi = sabit bir süre +- tolerans değeri.
 
+Kritikte bekleme süresinin tam istenilen değerde olmasını istiyoruz. 
 
+Kritik olmayanda bekleme süresi > sabitherhangi bir değer.
 
+![image](https://user-images.githubusercontent.com/75746171/152203077-8c224173-108b-454d-bdc7-aabcb5e3b38e.png)
 
+Critical section yönetimi neden gerekiyor? Araya kesme girerse bekleme süresi uzayarak kritik beklemeden uzaklaşacağımız için giriyor.
 
-
-
-
+Kritik beklemeler genelde mikrosaniyeler mertebelerindedir.
 
 
 
