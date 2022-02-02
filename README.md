@@ -327,7 +327,33 @@ LCD
 6 ucu clock işareti olarak kullanılıyor. Onaylama mekaniğzması high-low olarak ayarlanmış.
 5 ucu read-write ayarı
 
-52
+Display'e gönderilen veri 2 tür olabilir. Bu RS ucuyla belirlenebilir.
+Bir komut olabilir.
+Bir karakter kodu olabilir.
+
+
+1.08
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
