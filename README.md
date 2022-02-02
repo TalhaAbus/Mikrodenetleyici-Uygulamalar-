@@ -313,14 +313,21 @@ Kritikte bekleme süresinin tam istenilen değerde olmasını istiyoruz.
 Kritik olmayanda bekleme süresi > sabitherhangi bir değer.
 
 ![image](https://user-images.githubusercontent.com/75746171/152203077-8c224173-108b-454d-bdc7-aabcb5e3b38e.png)
-
+ 
 Critical section yönetimi neden gerekiyor? Araya kesme girerse bekleme süresi uzayarak kritik beklemeden uzaklaşacağımız için giriyor.
 
 Kritik beklemeler genelde mikrosaniyeler mertebelerindedir.
 
+LCD
+---
 
+![image](https://user-images.githubusercontent.com/75746171/152207636-c09c7923-6b14-42f3-a6ae-b465c3a7478c.png)
 
+3 tane kontrol ucu var. 4-5-6
+6 ucu clock işareti olarak kullanılıyor. Onaylama mekaniğzması high-low olarak ayarlanmış.
+5 ucu read-write ayarı
 
+52
 
 
 
