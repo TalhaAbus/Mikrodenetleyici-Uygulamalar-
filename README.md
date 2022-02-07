@@ -331,11 +331,12 @@ Display'e gönderilen veri 2 tür olabilir. Bu RS ucuyla belirlenebilir.
 Bir komut olabilir.
 Bir karakter kodu olabilir.
 
+Komut Göndermek: Hangi konuma yazdığını blirmeke istiyorsan komut gönderirsin.
+Karakter kodu: Hangi karakteri yazacağını belirlemek için
 
-1.08
+![image](https://user-images.githubusercontent.com/75746171/152834208-babb3333-6f4f-45b6-bf31-6f7c1391b478.png)
 
-.
-
+0 Nolu komut clear screen.
 
 
 
