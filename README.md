@@ -340,7 +340,7 @@ Karakter kodu: Hangi karakteri yazacağını belirlemek için
 
 
 
-
+41
 
 
 
