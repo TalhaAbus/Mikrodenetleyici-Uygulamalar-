@@ -9,7 +9,9 @@ Mikrodenetleyici nedir?
 - Bilgisayar sistemini oluşturan bir çok birim bir araya getirilip tek bir çipte toplanmış hali. Tek çipte toplanmasaydı gerektiğinde ona ek ilaveler yapabilirdik. 
 - Çok düşük güöçlerde çalışırlar.
 
->> Belli bir göreve adanmıştır fakat birden fazla alt görev işleyebilirler, >> Bunlar kendilerine yüklenen sabit bir programı çalıştırıyorlar.
+>> Belli bir göreve adanmıştır fakat birden fazla alt görev işleyebilirler, >> Bunlar kendilerine yüklenen sabit bir programı çalıştırıyorlar. (Kalıcı bellekteki)
+
+- Mikrodenetleyici aslında bir bilgisayar sistemidir fakat tek çipten oluşur. Bir bilgisayar sistemini oluşturmak için ise mikrodenetleyicinin çekirdek kısmına, çevresel birimlere ve bellek kısmına ihtiyaç vardır.
 
  Arm çekirdeği nedir?
  ---
@@ -24,22 +26,39 @@ Cortex = Beyin zarı
 - Flaş memoryler kalıcı belleklerdir. İçindeki programlar silinmiyor. (Aslında siliniyor ama çok uzun süre 200 yıl gibi)
 - Yazma zamanları yavaş, okuma zamanalrı hızlıdır.
 
+- Arm çekirdek kısmının üretimini yapmıyor, sadece data dosyalarını veriyor. Üretim de firmalar tarafından yapılıyor. Arm, mimarisini satıyor.
+- CPU ve core aynı şey mi? Aslında cpu işlemcinin merkezi işlem birimi. Bilgisayar sisteminde core kısmı cpu kısmı oluyor diyebiliriz.
+
+![image](https://user-images.githubusercontent.com/75746171/170818784-4e258129-1130-4f20-bd55-5020ce90ee5a.png)
+
+- Çekirdeğe dahil olan kısım sol üstteki kısım ve veri yollarıdır. 
+- Birden fazla yol olmasının sebebi aynı yolun aynı anda kllanılamaması.
+- Eğer tek bir yol olsaydı işlemci komutu çalıştırmak için program memoryden çekerken aynı zamanda başka bir çevresel birim ile iş yapamazdı.
+- Flash belleğin yazma sınırı 10bin ise, hep aynı bellek gözlerine yazdıldığında o bellek bir daha yazılama duruma gelebilir. 
+- Flash disk sadece device olarak çalışır, flash diski l-kullanabilmek için mikroişlemci tarafından host gerekir. Flash diski pc'nin us portuna bağlayarak kullanabilirim fakat stm32f103'ün usb portuna bağlayarak çalıştıramam çünkü onu host olarak çalıştırma şansım yok. (Uygun bir işlemcide mümkün olabilir)
+- 
+
+
 Not:
 ---
 ![image](https://user-images.githubusercontent.com/75746171/142284261-591e643f-fd83-41af-9f89-f0e5cb61c054.png)
 
-- Buradaki dhrystone bir benchmark testi. İşlemcileri değişik testlere sokarak performanslara göre işlemcileri karşılaştılılıyor ve performans değeri veriyorlar.
+- Buradaki dhrystone bir benchmark testi. İşlemcileri değişik testlere sokarak performanslara göre işlemcileri karşılaştılılıyor ve performans değeri veriyorlar. Saniyedeki milyon işlem sayısı.
 - İşklemciyi 10 MHz de çalıştırırsam 12.5 DMIPS işlem günüden olacak. max çalıştırırsam 75x1.25 olacak.
 - Bu işlemcilerin işlem gücünü karşılaştırmak için kullanılıyor.
 - Single cycle özellik ise tek cycle da çarpma ve bölme ypaabilme özelliği. Bu verimli çalıştırğını gösterir.
 - SRAM, Static ram. Yazılı silinir bellk.  
-
+- Flash hafıza, EEPROM'un gelişmiş versiyonu gibi.
+- İşlemcinin çalışma frekansı, işlemcinin işlem yapma gücüyle doğrudan orantılı.
+- 
 Static ram ve dynamic ram
 ---
 - DRAM yapısal olarak daha basit bir bellek türü.
 - İkisi de yazılır silinir bellek.
 - SRAM daha hızlıdır. ve daha pahalıdır, transistör sayısı daha fazladır. 
 - SRam daha çok hızlı çalışması gereken birimlerde tervcih ediliyor. Güç harcaması daha düşük.
+- Hızın önemli olduğu fakat bellek miktarının önmemli olmadoığı irimlerde tercih ediliyor.
+- 
 
 
 ![image](https://user-images.githubusercontent.com/75746171/142285172-ef1a3c48-7251-4795-b95b-6526f5e94c47.png)
@@ -49,8 +68,12 @@ Static ram ve dynamic ram
 - POR işlemcinin düzgün çalışmaya başlaması için gerekiyor.
 - PDR ise gerilim düştüğünde stabil kalmasını sağlar. 2 volt altına düştüğünde reset ediyor ve normal seviyeye çıkınca tekrar çalıştırmaya başlıyor.
 - Internal RC osilatörü ile çalışmaya başlıyor sonra kristal osilatör 72 MHZ'e pll devresi ile getiriliyor. Bu internal osilatör startup ta kullanılıyor.
-
-PLL: Stabil bir frekansın tam katında bir stabil çıkış elde etmek içinç kullanılıyor.
+- İşlemcinin saat işaretininüretildiği yerin tasarlandığı kısım st tarafından tasarlanıyor.
+- Arm işlemcileri çalışmaya başlarlken kendi içlerindeki rc osilatörden başlıyor.
+- Yazılımsal olarak kristal osilatör ve pll devresiyle yükseltilebiliyor.
+- Kristallerdeki ppm değeri, kristalin 1 milyon pulse da kaç pulse hata yaptığını gösteriyor.
+- TCXO osilator sistemleri, değişen sıcaklığa göre ayrı bir mikrodenetleyici ile kristalin frekansına müdahale ddiyor.
+- PLL: Stabil bir frekansın tam katında bir stabil çıkış elde etmek içinç kullanılıyor.
 
 - Mesela kristal ösilatör 72 mhz ile çalışmıyor. Kristal osilatör stabil olarak çalıştılıp plls devres i ile çarpılarak hedef frekansa geçiliyor.
 
@@ -65,7 +88,7 @@ Dahili osilatör mü kararlı harici osilatör mü?
 - Sleep modunda işlemcinin saati ve çevresel birimler çalışmaya decam eder. Fakat çekirdek çalışmayı durdurur. Komutları işlemez.
 - Uzaktan kumanda gibi bastığımda çalışsın basmadığımda sleep modunda kalsın.
 - Stop modu işlmeci duruyor fakat saat de duruyor. Bu modda hem çekirdek birimi hem de çevresel birimleri çalışmayı durdurur.
-- Standby ise işlemciyi tamamen kapatmak. 
+- Standby ise işlemciyi tamamen kapatmak. (Yazılımsal olarak işlemciyi durdurma)
 
 - RTC devresi var. Real time clock. 
 
@@ -83,6 +106,8 @@ Dahili osilatör mü kararlı harici osilatör mü?
 - İlk 128 mb bölümü gerçekte var olan bir bellek değil. Flash memorynin bir kopyası da burada bulunuyor. Duruma göre başka bir alanı içeriyor. Yani burada bir memory yok başka bir adresteki değer burada da gözüküyor.
 - Burası bir ynsıma bölgesi. Burayı okuması bot seçeneğine bağlı. Yani işlemcinin power on sırasında boot pinlerinin 0-1 konfigürasyonlarına göre burası hgaritalanıyor ve bu alanın nereyi temsil edeceğini belirliyor. Yani ben işlemcinin başlayacağı yeri belirliyorum fakat bnu direk o adresten başltatmıyorum, bu adresi 0 adresine kopyalayıp işlemciyi 0'dan başlatıyortum.
 - Bunun amacı işlemcinin boot ettiği adres değişmesi fakat fiziksel olarak farklı yerden başlayabilsin diye düşünülmüş.
+
+
 
 Ders 3 (06.01.2022)
 ---
