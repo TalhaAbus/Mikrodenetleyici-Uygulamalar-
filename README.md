@@ -107,6 +107,28 @@ Dahili osilatör mü kararlı harici osilatör mü?
 - Burası bir ynsıma bölgesi. Burayı okuması bot seçeneğine bağlı. Yani işlemcinin power on sırasında boot pinlerinin 0-1 konfigürasyonlarına göre burası hgaritalanıyor ve bu alanın nereyi temsil edeceğini belirliyor. Yani ben işlemcinin başlayacağı yeri belirliyorum fakat bnu direk o adresten başltatmıyorum, bu adresi 0 adresine kopyalayıp işlemciyi 0'dan başlatıyortum.
 - Bunun amacı işlemcinin boot ettiği adres değişmesi fakat fiziksel olarak farklı yerden başlayabilsin diye düşünülmüş.
 
+- Burada system memory, bootloader uygulamalarında kulla nılıyor. Farklı ir bellekten boot etmek için. Aslında işlemci her zaman 0'dan boot ediliyor. Ama öyle oluyor ki flash memory başlangıç bölgesine kopyalandığı için işlemci flash memoryden başlamış oluyor.
+
+Ders 2
+---
+
+![image](https://user-images.githubusercontent.com/75746171/170874717-73450138-d70b-4e66-a277-405409776a1c.png)
+
+- Register diyebilmemiz için işlemcinin çekirdek kısmıyla bağlantılı ve komut kümesi ile doğrudan işleme sokulabilen alanlar olması gerekir. (ARM mimarisi için)
+- STM32 - 32 bit bellek adresleme yeteneği olan bir işlemci toplam kaç bellek gözü adresleyebilir?
+
+![image](https://user-images.githubusercontent.com/75746171/170876134-cae74a6f-f5a3-40ff-bc88-0da3efc3648c.png)
+![image](https://user-images.githubusercontent.com/75746171/170876155-9fcbe0f6-1598-449a-a194-487601e26f12.png)
+
+- 10'luk sistemdeki her bir basamağı kaç bit ile ifade edebiliriz?
+
+![image](https://user-images.githubusercontent.com/75746171/170878098-655bc0d3-556d-4894-8362-dca2c732b80e.png)
+
+![image](https://user-images.githubusercontent.com/75746171/170879267-e9a41590-e7a0-46ee-88c7-42ca50712e3e.png)
+
+- Reference manual
+- stm32f1 ile başlayan işlemci ailesinin çinde yerr laan tüm çevresel irimlerin detaylı açıklaması var. (ADC nin nasıl kullanılacağı, registerlar, ayarlar)
+
 
 
 Ders 3 (06.01.2022)
