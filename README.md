@@ -206,8 +206,18 @@ Kaç mhz de çalıştırmalıyız?
 Kontrol uçlarından yön seçerrek saat işareti ile birlikteveri gönderiiyor. Aynı anda bir yerden bir yere gönderilenbilir. Aynı anda 2 yön olmaz. Aynı anda kullanılacaksa busmatrix denilen kavşak noktalarına ihtiyaç var.
 
 ![image](https://user-images.githubusercontent.com/75746171/148380379-7c799083-497c-4f11-8daf-a9a2ad87c135.png)
+- DMA işlemcinin araya girmeden bir bellek bölgesinden başka bir bellek bölgesine veri trasnferini sağlayan birim.
+- I/O portu: Lojik seviyede 0 ve 1 haberleşmes iiçin giriş çıkış içinç kullanılan veya özel durumlarda analog seviyede giriş çıkış almak için kulanılan uçlardır.
 
-I/O portu: Lojik seviyede 0 ve 1 haberleşmes iiçin giriş çıkış içinç kullanılan veya özel durumlarda analog seviyede giriş çıkış almak için kulanılan uçlardır.
+![image](https://user-images.githubusercontent.com/75746171/171000633-61da5048-cf10-414e-ba47-b6c5f2e3ccc7.png)
+- Koruma diyotları, yüksek veya ters gelen gerilimi bloke et. Uca yüksek gerilim uygulanması durumunda.
+- VDD + 07 volt ve üstü gerilimlerde diyot üzerinden akım yukarı gidecek ve iç sistemi koruyacak. Aynısı ters yönde de geçerlidir.
+- 3 durumlu bir anahtarlama çıkış devresi NMOS-PMOS
+- Flloating, kullanılmayan uç varsa inputsa, ben onu 0 veya 1 okuyabilirim. Kullanılmayan uıçların toprağa bağlanmasının tavsiye edilmesinin sebebi, bu uçlardan parazit almamak.
+
+
+
+
 
 ![image](https://user-images.githubusercontent.com/75746171/148382192-a7f3f1a1-7748-4ca0-8355-837e851cc992.png)
 
