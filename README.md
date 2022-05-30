@@ -145,6 +145,10 @@ Neden 32 bit değil de 8 bit genişlikte adresler?
 - İşlemcinin çevresel birimlerini kullanmak için biz aslında bu bellek bölgelerine erişiyoruz.
 - Yani çevresel bşirimleri yönetme şeklimiz, çevresel bellek bölgesine erişerek buraya bazı değerler yazarak ve okuyarak gerçekleşiyor.
 - 
+![image](https://user-images.githubusercontent.com/75746171/170947299-567c1415-0ce4-4e31-bdfa-df52240544a9.png)
+- İşlemcinin donanımını kontrol ederken aslında bu bölgelere yazıp okuma yapıyoruz.
+- İşlemcinin kullanılan seri portuna (USART2) bellek gözüne yazılan bazı değerler ile ayarlamalar yaparız. 
+
 
 ![image](https://user-images.githubusercontent.com/75746171/148372041-dbfd131f-e956-42bd-abfa-c4acc40cfcf7.png)
 
@@ -153,15 +157,18 @@ Neden 32 bit değil de 8 bit genişlikte adresler?
 ![image](https://user-images.githubusercontent.com/75746171/148372384-d655940d-23f7-4284-b76e-37eee46e3033.png)
 
 - Flash memory programın kodunu yani komutlarını bulunduran bölge. Okuma zamanları hızlı ve yazma zamanları yavaş. Enerji kesildiğnde değerlerini korurlar.
+- İşlemcinin veri yolu her bölgeyi çalıştıracak şekilde tasarlanmamış. Mesela çevre birimlerinin olduğu adrese gidip oradaki kod yürütülemez, hata verir.
 - 
 
 ![image](https://user-images.githubusercontent.com/75746171/148373463-0bd80b98-6b7c-47b5-ac27-39e8e3647f55.png)
-
-option bytes, Burada işlemcinin kalıcı konfigürasyonlarını yapacak bazı alanlar var. Program çalıştırmak amacı ile değil. 
+  
+- option bytes, Burada işlemcinin kalıcı konfigürasyonlarını yapacak bazı alanlar var. Program çalıştırmak amacı ile değil. 
+- Çevresel birimlere çalışma zamanında veriler yazıyoruz fakat option byte kısmına programlama aşamasında veri yazıyoruz.
+- System memory, 2 farklı programım varsa bunlardan istediğimi başlatmama yarayabilir.
 
 ![image](https://user-images.githubusercontent.com/75746171/148373731-f35e4f4e-105c-4eae-a29f-079c44e6c743.png)
 
-Bildiğimiz RAM. System memory. 
+- Bildiğimiz RAM. System memory. SRAM den kod çalıştırılabiliyor. Fakat oraya giden yol daha uzun bir yol, oradan çalışan kodlar daha yavaş çalışır.  Aslında işlemci flash memoryden kod çalıştırmaya optimize edilmiştir. 
 
 
 ![image](https://user-images.githubusercontent.com/75746171/148374813-ce0c78d0-452f-4235-9f04-8dfd77fcd96f.png)
@@ -170,7 +177,7 @@ Bildiğimiz RAM. System memory.
 
 Register: İşlemcinin çekirdek bölgesinin doğrudan kullanabildiği, aritmetik lojik işlemlerde kullandığı bölgeler.
 
-Stack pointer: İşlemcinin veriler istack memoryde saklayıp geri çekmek için kullandığı bellek bölgesi. Local değişkenlerin tutulduğu alan. İşlemci alt programa girerken belli register depğerlerini saklama kzorunda. 
+Stack pointer: İşlemcinin verileri stack memoryde saklayıp geri çekmek için kullandığı bellek bölgesi.  Local değişkenlerin tutulduğu alan. İşlemci alt programa girerken belli register depğerlerini saklama kzorunda. Last in first out şeklinde çalışır.
 
 Link register: Alt programdan çıktıktan sonra eri dönebilşmek için.
 
