@@ -228,6 +228,15 @@ Open drain ne zaman kjullanılıyor?
 
 Ders 4 )(07.01.2022)
 ---
+Bluepill - cortex m3
+Blackpill - cortex m4
+
+![image](https://user-images.githubusercontent.com/75746171/171632949-81c758b3-dc3e-4cbd-985b-f3be2442840e.png)
+
+- Vcc - Gnd uçları 
+Bunlara 100 nf bypass bağlanması lazım, içeride yüksek frekanslı işaretler dolaşırken direnç gösterir. Yüksek frekanslı işlemleri işlemcinin dışına çıkmadan bypass etmek.
+
+
 
 ![image](https://user-images.githubusercontent.com/75746171/148546470-55ea7965-4493-4c3d-9db6-96d05446dfd0.png)
 
