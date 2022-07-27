@@ -236,13 +236,45 @@ Blackpill - cortex m4
 - Vcc - Gnd uçları 
 Bunlara 100 nf bypass bağlanması lazım, içeride yüksek frekanslı işaretler dolaşırken direnç gösterir. Yüksek frekanslı işlemleri işlemcinin dışına çıkmadan bypass etmek.
 
-
-
 ![image](https://user-images.githubusercontent.com/75746171/148546470-55ea7965-4493-4c3d-9db6-96d05446dfd0.png)
 
 Buradaki offset aslında o structer'ın neresinde olduğunu gösteriyor.
 
 Offset: bir nokta referans alınarak o noktadan ne kadar uzak olduğunu belirleme.
+
+Not
+---
+![image](https://user-images.githubusercontent.com/75746171/181219250-a4207548-ceaf-4f65-b846-711ff3eefe00.png)
+
+- Burada base olarak tanımlanan yer bellekte çevresel birimler için ayrılan bellek bölgesinin başlangıç adresine karşılık geliyor.
+
+![image](https://user-images.githubusercontent.com/75746171/181220283-72036129-66f0-44a0-bf66-9b73d241e7fd.png)
+
+- PortC nin başlangıç adresi
+- 
+![image](https://user-images.githubusercontent.com/75746171/181220398-076a21a4-6b80-4514-8f46-16d5ac10a7d7.png)
+
+Not
+---
+![image](https://user-images.githubusercontent.com/75746171/181220657-ab449af5-5b15-4a3a-956f-5d908259ef49.png)
+
+- Buradaki değerler yazdığımız değerlerin dışında dışsal sebepler ile değişebilir demek.
+- 5 yazarım ama okuduğumda 7 alabilirim.
+- Ne yazıyorsam onu okuyorum olayı yoksa volatile vardır.
+- Çevresel registerların tamamı volatile olarak tanımlanmış.
+
+![image](https://user-images.githubusercontent.com/75746171/181222241-ec50b53f-a4a4-463c-b03a-794080ad4574.png)
+
+- uint32 4 byte lık bir integer olduğu için 4 byte offset.
+
+![image](https://user-images.githubusercontent.com/75746171/181224933-97c53586-0b67-4a36-bff5-330765b45b11.png)
+
+![image](https://user-images.githubusercontent.com/75746171/181224978-1f072234-cdb1-47c6-bbc7-f7e407b9d13f.png)
+
+- 16 pin var ve 4 bit ile ifade ediliyor. 64 tek register a yetmediği için CRL ve CRH diye ayrılmış.
+
+
+
 
 Ders 6-A
 ---
