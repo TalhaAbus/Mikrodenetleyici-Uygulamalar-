@@ -304,9 +304,13 @@ Notlar:
 - İşlemci resetten çıktığı zaman registerlar hangi değerleri alıyor?
 - GPIO nun konfigurasyon registerları floating input olarak başlıyor.
 - Open drain ve push pull arasında güç harcama farkı bazı işlemcilerde var fakat bazılarında yok. Mosfet açık devre olduğnda yüksek empedansı olması sebebiyle kayda değer bir güç kaybı olmaz.
-- 
 
-1.46
+Handler
+---
+Belirli bir görevi yapmak üzere (kesme) yazılmış olan alt program parçalarına handler deniliyor.
+
+- Event - Olay
+- Eylem - Handler
 
 
 Ders 6-A
