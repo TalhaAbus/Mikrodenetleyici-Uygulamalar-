@@ -273,7 +273,40 @@ Not
 
 - 16 pin var ve 4 bit ile ifade ediliyor. 64 tek register a yetmediği için CRL ve CRH diye ayrılmış.
 
+Ders 5
+---
 
+![image](https://user-images.githubusercontent.com/75746171/181235698-3d512890-72b0-4233-937a-fa0b27a6e9de.png)
+
+- Mod bitleri giriş ve çıkış olduğunu belirliyor.
+
+
+Set - Reset Register
+---
+![image](https://user-images.githubusercontent.com/75746171/181241525-3b2f10dd-c135-4cbc-bca4-82f32812e429.png)
+
+- İlk 16 bit set işlemi, diğer 16 bit reset işlemi.
+- 3 - 6 - 7 - 12 Çıkış 1 oldu
+- 2 - 5 - 10 - 13 - 14 sıfır oldu.
+
+![image](https://user-images.githubusercontent.com/75746171/181250059-54c8933f-04ec-4fda-a51e-69a15ac6307b.png)
+
+- Bir delay fonksiyonu
+- Burada wait yerine boş deyim verseydik bazı derleyiciler optimize edip bu kodu atlayabiliyor.
+
+Port Configuration Lock Register
+---
+
+![image](https://user-images.githubusercontent.com/75746171/181250980-2683731e-8d7a-482f-9031-1410ffc0a489.png)
+
+Notlar:
+---
+- İşlemci resetten çıktığı zaman registerlar hangi değerleri alıyor?
+- GPIO nun konfigurasyon registerları floating input olarak başlıyor.
+- Open drain ve push pull arasında güç harcama farkı bazı işlemcilerde var fakat bazılarında yok. Mosfet açık devre olduğnda yüksek empedansı olması sebebiyle kayda değer bir güç kaybı olmaz.
+- 
+
+1.46
 
 
 Ders 6-A
