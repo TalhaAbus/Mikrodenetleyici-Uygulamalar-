@@ -316,7 +316,7 @@ Belirli bir görevi yapmak üzere (kesme) yazılmış olan alt program parçalar
 Ders 6-A
 ---
 Multitasking
-
+ 
 RTOS sistemleri multitasking'i etkin bir biçimde yapılmasını sağlıyor.
 
 - Paralal olarak yapılabilir. YAni her bir görev farklı bir işlemci tarafından gerçekleştirilebilir.
@@ -325,7 +325,14 @@ RTOS sistemleri multitasking'i etkin bir biçimde yapılmasını sağlıyor.
 
 ![image](https://user-images.githubusercontent.com/75746171/151873516-3bed6b94-d85c-42ab-a060-70bcca9b48e3.png)
 
-RTOS Sistemlerin en önemli özelliği de olayların gerçekleşmesi ile işlenme zamanları arasında geçen süreyi minimum tutarak Kısa zamanda işlemek.
+- RTOS Sistemlerin en önemli özelliği de olayların gerçekleşmesi ile işlenme zamanları arasında geçen süreyi minimum tutarak Kısa zamanda işlemek.
+- Bu işletim sistemlerinde birden fazla process var ve bunlar mümkün olduğunca düşük gecikmeyle işlenmesi durumunda fayda sağlamaktadır.
+
+Örnekler:
+---
+- Otonom araçlar
+- Kalp pili
+
 
 RTOS sistemleri avantaj ve dezavantajları
 ---
@@ -334,6 +341,7 @@ RTOS sistemleri avantaj ve dezavantajları
 - Sistemi çok iyi bilmeliyiz. RTOS ta sistem çok iyi bilinmiyorsa verim alınamaz.
 - RTOS da cpu nun core sistemi RTOS un kontrolünde. Ayrıcalıklı çalışmaya izin vermeyecek.
 - non-rtos sistemde tüm sistmee hakimiz fakat diğer tarafta sistemin kritik özellikleri RTOS'a devredilmiş.
+
 
 Interrupt
 ---
@@ -372,15 +380,55 @@ IRQ (Interrupt Request)
 
 - Koşulların tünmü sağlanıyorsa NVIC e bir başvuru yapılıyor. Controller da duruma göre (Interrupt Priority)
 
+
+
 Interrupt vector
 ---
+- Interrupt adres tablosu
 - Olay gerçekleşiyor fakat olay gerçekleşince nereye gideceğini nereden biliyor?
 - Olaylar ve kesme kaynağı (interrupt source) ilişkilendirmesini biz yapanmıyoruz. Bunlar donanımsal olarak ayarlanmış.
+- PA0 ucunda yükselen ya da düişen kenar olduğunda 7 nolu kesme oluşacak. Bunu biz belirleyemiyoruz. 
 
+Ders 6 - B
+---
 
 ![image](https://user-images.githubusercontent.com/75746171/152142910-79b9121c-7e1e-4697-9fa5-ba3cd880f6ae.png)
 
-Buraya kulalnmadığımız çevresel birimleri de dahil etseydik bir zararı olmazdı. Çünkü bu linkerlar akıllı. Kullanılmayan fonksiyonları koda dahil etmiyorlar.
+Buraya kullanmadığımız çevresel birimleri de dahil etseydik bir zararı olmazdı. Çünkü bu linkerlar akıllı. Kullanılmayan fonksiyonları koda dahil etmiyorlar.
+
+- BASE PROJESİ YAZILDI, TEKRAR ET.
+
+State Machine Modellemesi
+---
+![image](https://user-images.githubusercontent.com/75746171/181515852-3ebe6585-9a32-4e05-9d33-c21281ea2cf0.png)
+
+Saat ayarlama state machine:
+
+![image](https://user-images.githubusercontent.com/75746171/181517231-ecf333b3-f9a4-4455-bc7c-62f586e1c67c.png)
+
+Kod ile ifadesi:
+
+![image](https://user-images.githubusercontent.com/75746171/181517493-91f7e4b9-7b3f-46e0-99b4-1c9217e7349e.png)
+
+- Görev fonksiyonlarında iyi çalışan model state machine modelidir. İyi kurgulanması gerekir.
+
+Ana program kesmeden nasıl etkilenmiyor?
+
+- Ana program akarken kesme geliyor ve kesme oluştuğunda o andaki kaldığı yer ve registerları kaydeder. Diğer fonksiyondan geri çıktığında kaydetteiği her şeyi geri yükleyerek program kaldığı yerden devam ediyor. 
+- Kesilme öncesi bilgileri işlemci stack bölgesine kaydediyor, stack onları otomatik olarak push ediyor.
+
+Saat
+---
+![image](https://user-images.githubusercontent.com/75746171/181524414-59934975-09b8-479b-86bd-6151a9e81292.png)
+
+- Saat bize her zaman gerekiyor. Devamlı artan bir sayaç.  
+
+Not:
+---
+
+![image](https://user-images.githubusercontent.com/75746171/181545608-9e298e06-ac39-4859-95f8-24ae12ac17d7.png)
+
+- Normalde volatile olmasaydı a ve b'ye 5 değerini atabilirdi. Ama volatile oldğu zaman yazdığım değeri okuma garantim yok. En son bulunan değeri korumak zorunda değil. Volatile derleyiciyi uyarır. O değişkene erişirken her zaman kendisine eriş. Dolaylı olarak erişme.
 
 Real time:
 ---
