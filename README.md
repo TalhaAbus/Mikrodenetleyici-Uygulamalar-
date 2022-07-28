@@ -430,6 +430,12 @@ Not:
 
 - Normalde volatile olmasaydı a ve b'ye 5 değerini atabilirdi. Ama volatile oldğu zaman yazdığım değeri okuma garantim yok. En son bulunan değeri korumak zorunda değil. Volatile derleyiciyi uyarır. O değişkene erişirken her zaman kendisine eriş. Dolaylı olarak erişme.
 
+Ders 7 
+---
+Tüm arm çekirdeklerinin içinde bir timer var. Arm çekirdeğinden gelen. Geriye doğru sayan timer. SystemTick timer. Biz u timer ı programlayarak standart bir timer olarak kullanabiliriz. Tipik olarak task switching de kullanılıyor. Bir RTOS kullanıldığı zaman her task ı belli süre çalıştırıp diğerine geçmek için bu handler kullanılıyor.
+
+12.00
+
 Real time:
 ---
 Biz uygulamalarda yaptığımız işlem hep bir olay ve olayın işlenmesi şeklinde gerçekleşir.
