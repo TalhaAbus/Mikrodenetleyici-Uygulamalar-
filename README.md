@@ -382,8 +382,9 @@ IRQ (Interrupt Request)
 
 
 
-Interrupt vector
+Interrupt vector Table
 ---
+- Kaç numaralı kesme geldiğinde nereye gitsin.
 - Interrupt adres tablosu
 - Olay gerçekleşiyor fakat olay gerçekleşince nereye gideceğini nereden biliyor?
 - Olaylar ve kesme kaynağı (interrupt source) ilişkilendirmesini biz yapanmıyoruz. Bunlar donanımsal olarak ayarlanmış.
@@ -434,7 +435,18 @@ Ders 7
 ---
 Tüm arm çekirdeklerinin içinde bir timer var. Arm çekirdeğinden gelen. Geriye doğru sayan timer. SystemTick timer. Biz u timer ı programlayarak standart bir timer olarak kullanabiliriz. Tipik olarak task switching de kullanılıyor. Bir RTOS kullanıldığı zaman her task ı belli süre çalıştırıp diğerine geçmek için bu handler kullanılıyor.
 
-12.00
+![image](https://user-images.githubusercontent.com/75746171/181699844-c770b22b-4354-427a-b634-003cb13a2dcf.png)
+
+- Kesmenin oluşması için donanımsal bir sebep gerekir. Bu kesmede donanımsal sebep sayacın sıfıra ulaşmasıdır.
+- Kesmenin de bireysel olarak aktive edilmesi de gerekir. Default olarak 2 tane donanımsal kesme hariç tüm kesmeler deaktive edilmiştir.
+
+![image](https://user-images.githubusercontent.com/75746171/181700916-10784455-73cb-4469-bd67-90e876d00464.png)
+
+- IO'ların kullanılabilmesi için onlara clock sağlanabilmesi gerekir.
+
+- Bazı alternate function uçları open drain durumunda oluyor. I2C haberleşmesi 2 durumlu bir haberleşme olduğu için çıkış 1 kullanılmıyor. 
+
+
 
 Real time:
 ---
