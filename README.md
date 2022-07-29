@@ -446,7 +446,42 @@ Tüm arm çekirdeklerinin içinde bir timer var. Arm çekirdeğinden gelen. Geri
 
 - Bazı alternate function uçları open drain durumunda oluyor. I2C haberleşmesi 2 durumlu bir haberleşme olduğu için çıkış 1 kullanılmıyor. 
 
+Ders 8
+---
 
+Katmanlama
+---
+![image](https://user-images.githubusercontent.com/75746171/181763602-7e4b6e39-969a-49fb-b78f-ee8507f7c5a8.png)
+
+- En altta donanımın fiziklse kısmı bulunuyor
+- Biz donanıma erişmek için RAM bölgesindeki özel bazı alanları kullanıyoruz. Registerlar. Function Register
+
+![image](https://user-images.githubusercontent.com/75746171/181755523-925fcd67-103e-43f1-938b-a095b5600a65.png)
+
+- CMSIS Denilen bölge arm çekirdek özelliklerini kontro letmek amacıyla ve ST nin çevresel özelliklerini kontrol etmek amacıyla yapılmış olan tanımlamaları buılunduruyor.
+- Bir üst kademede 2 adet library bulunuyor.
+- Bir tanesi CMSIS in kütüphane kısmı. 3 dosya halinde görüyoruz. misc.c - cm3.c - cm3.h
+
+- Çekirdek + çevresel donanımı kontrol etmek için structer kullanacaksınız.
+
+![image](https://user-images.githubusercontent.com/75746171/181759326-ad2b00b3-8f0a-4793-a519-b586ad761401.png)
+
+- ST Preipheral Library çevresel birimlerin kontrolü amacıyla düzenlenmiş kütptane. Uart, spi, gpio...
+- CMSIS ARM ın kendi çekirdek bölgesinin kontrolü için (NVIC, DMA)
+
+Hardware Abstraction Layer (HAL) (io.c - io.h)
+
+![image](https://user-images.githubusercontent.com/75746171/181766131-b9c6de1a-8c66-40b2-8005-7c63c5f3b9d4.png)
+
+- Değişik çevresel birimler için yazılmış çevresel birim kütüphaneleri.
+
+![image](https://user-images.githubusercontent.com/75746171/181775976-a1a6b9f0-3904-43d5-910a-38902bb1576e.png)
+
+- misc.c  Kesmelerde bazı fonksiyonları kullanmamzıı sağlayacak.
+- Hangi birimi kullanırsan kullan onun saat işaretini aktive etmek için ve kapatmak gerekebileceği için rcc.c yi dahil ettik.
+- Kullanmadığımız çevresel birimleri de dahil etseydik bir zararı olmazzdı çünkü bu linkerlar çağırılmayan fonksiyonları koda dahil etmiyorlar.
+
+57.00
 
 Real time:
 ---
