@@ -481,8 +481,6 @@ Hardware Abstraction Layer (HAL) (io.c - io.h)
 - Hangi birimi kullanırsan kullan onun saat işaretini aktive etmek için ve kapatmak gerekebileceği için rcc.c yi dahil ettik.
 - Kullanmadığımız çevresel birimleri de dahil etseydik bir zararı olmazzdı çünkü bu linkerlar çağırılmayan fonksiyonları koda dahil etmiyorlar.
 
-57.00
-
 Real time:
 ---
 Biz uygulamalarda yaptığımız işlem hep bir olay ve olayın işlenmesi şeklinde gerçekleşir.
@@ -491,6 +489,7 @@ Biz uygulamalarda yaptığımız işlem hep bir olay ve olayın işlenmesi şekl
 
 Olay 9 öncelikli ise olay 2 işlenirken işlem 2 den mümkün olduğunca kısa szamanda çıkarak olay 9 a geçer.
 
+Real time demek olayların öncelik sırasına bakarak bunlarn mümkün olduğunca gecikmesiz olarak işlenmesi demektir.
 Real time sistem dediğimiz zaman olay ve işleme zamanının önceliğin de göz önüne alınarak kısa tutulması.
 Oay ve oalyın işlenmesi arasındaki süreç uzuyorsa real time'dan uzaklaşıyoruz demektir.
 RTOS da olayların mümkün olduğunca az gecikme ile işlenmesi hedeflenir. Fakat birden fazla olay aynı zamanda meydana gelebileceği için önceliklere uygun olarak en az gecikme ile gerçekleşir.
@@ -513,6 +512,8 @@ Usart/UART, SPI, I2C - Seri Haberleşme
 
 ![image](https://user-images.githubusercontent.com/75746171/152195775-57443dbe-6483-472e-8215-83b3de6a29ef.png)
 
+USB çoklu çünkü host tarafından birden fazla slave bağlanabiliyor. I2C çoklu.
+
 Başlatma yetkisi olan: Master Device
 
 Sadece cevap yetkisi olan: Slave Device
@@ -527,6 +528,9 @@ Asenkron haberleşme: Kendi saatlerini kullanma
 
 
 ![image](https://user-images.githubusercontent.com/75746171/152198527-13725ec1-a876-4cc8-9f12-ffb067ea5e2a.png)
+
+SPI- Senkron
+UART - Asenkron
 
 Kontrol uçlaından 1 tansini adres - data seçimi için kullanarak aynı veri yolu adres ve veri iletimi olarak kullanılması yaygın bir uygulama.
 
