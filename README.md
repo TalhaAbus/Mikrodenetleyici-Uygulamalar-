@@ -534,6 +534,9 @@ UART - Asenkron
 
 Kontrol uçlaından 1 tansini adres - data seçimi için kullanarak aynı veri yolu adres ve veri iletimi olarak kullanılması yaygın bir uygulama.
 
+Ders 9
+---
+
 Neden senkron haberleşme deniliyor?
 ---
 Veri hazırlandığı zaman B tarafı veriyi hemen kabul etmez. Kabul edilmesi için clock hattında yükselen kenar(örneğin) oluştuğunda bu onay anlamına gelir. B tarafı yükselen kenarı gördüğünde veriyi kabul eder. Bu onaylama mekanizması senkron haberleşmenin ana ilkesidir. Saat işaretini üreten taraf master device. 
