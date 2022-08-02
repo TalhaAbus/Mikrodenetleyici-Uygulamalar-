@@ -543,7 +543,7 @@ Veri hazırlandığı zaman B tarafı veriyi hemen kabul etmez. Kabul edilmesi i
 
 1 Adım veri, senkron haberleşme kaç bir yapılıyorsa o kadar bit veri gönderilmesi demek.
 
-1. ;Data Setup (Verinin hazırlanması)
+1. Data Setup (Verinin hazırlanması)
 2. Clock Generation (Saat işaretinin üretilmesi)
 Saat işaretinin buradaki anlamı onaylama.
 Veri hazırlanırken karşı taraf almaya kalkarsa yanlış veri gidebilir.
@@ -568,6 +568,9 @@ Critical section yönetimi neden gerekiyor? Araya kesme girerse bekleme süresi 
 
 Kritik beklemeler genelde mikrosaniyeler mertebelerindedir.
 
+Aslında critical section yönetiminde kesmeleri kapatıyoruz. 
+
+
 LCD
 ---
 
@@ -588,27 +591,56 @@ Karakter kodu: Hangi karakteri yazacağını belirlemek için
 
 0 Nolu komut clear screen.
 
+![image](https://user-images.githubusercontent.com/75746171/182317941-be4e3582-0a18-4300-943f-2df4f7e84ac3.png)
+
+Ve bunların tanımlamaları
+
+![image](https://user-images.githubusercontent.com/75746171/182318092-021b6805-f21f-4eee-ba2b-17e5efe16e3e.png)
+
+Bu uçlar, biz simplex kullanacağımız için bunların hepsi pushpull çıkış olarak kullanılacak.
+
+![image](https://user-images.githubusercontent.com/75746171/182319198-c04fcc9a-355f-401e-aa2b-d2c5198ccd15.png)
+
+E'yi başlatmadan önce 0 olduğundan emin oluyorum.
+
+![image](https://user-images.githubusercontent.com/75746171/182323450-520f0f79-55ef-429d-a0fd-d70ec06e682c.png)
+
+![image](https://user-images.githubusercontent.com/75746171/182324175-aa3a914f-4274-4899-a5b8-05d37fd0d5f7.png)
+
+Portları değerler ile and işlemine tabi tutuyor ve yazılacak değerleri aktarıyor.
+
+Veriyi hazırladık, göndermek için saat işretini üretmemiz gerekiyor.
 
 
-41
+![image](https://user-images.githubusercontent.com/75746171/182325610-66e4af24-ae11-4674-8124-bf1c33289cca.png)
 
+![image](https://user-images.githubusercontent.com/75746171/182326282-b1aac940-1245-4eb7-b59f-3646baea3f5d.png)
 
+- = operatörü olmadığı için öteleme operatörü c nin değerini değiştirmez.
 
+![image](https://user-images.githubusercontent.com/75746171/182327198-7ced62cd-ed9d-4936-a257-5b1e614de1d7.png)
 
+- Komut gönderdiğimiz için rs değerini ayarlıyoruz. 
 
+Display nasıl çalışır?
+---
+Tüm displaylerin bellek bölgesi var. Birde fiziksel display var, gözüken kısmı.
 
+Display kontroller, display memory e bakarak fiziksel kısma görüntüyü aktarıyor.Display memory nin her bir hafıza gözüne biz karakter kodu yazıyoruz.
 
+![image](https://user-images.githubusercontent.com/75746171/182352469-b00da216-6fab-4e16-9dac-b4b17ba2b19a.png)
 
+LCDInit fonksiyonu
 
+![image](https://user-images.githubusercontent.com/75746171/182358395-0256a4fd-b80c-44d5-b9d3-fe55ccc5b59e.png)
 
+- Port yapılandırma
 
+![image](https://user-images.githubusercontent.com/75746171/182358740-a7533a50-06ea-4451-b549-14c3b8c51b28.png)
 
+- Diğer ayarlar
 
-
-
-
-
-
+1.50
 
 
 
