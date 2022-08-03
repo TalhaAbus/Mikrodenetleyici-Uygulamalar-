@@ -674,6 +674,53 @@ Printf nereye yazacak?
 
 - Burada ise standart tanımlamalara göre print edilen karakter sayısını döndürecek.
 
+- Write fonksiyonunu yazıyoruz
+
+![image](https://user-images.githubusercontent.com/75746171/182604820-96b85975-23ef-4ff0-ba7e-af61c6e4a4a5.png)
+
+- Eğer buffer = NULL ise başlangıçta hemen çıkıyoruz.
+
+Örnek:
+---
+![image](https://user-images.githubusercontent.com/75746171/182605371-2ce7a646-c07b-4b55-86b7-af2c935746ae.png)
+
+- Bunlar hep PUBWEAK olarak tanımlanmış. PUBWEAK C'deki __ önekiyle yazılan fonksiyonlar gibidir. PUBWEAK bunun assembly versiyonudur.
+- Burada tanımlananları tekrar yazarsak PUBWEAK versiyonu devre dışı kalacak.
+- Printf'in nereye yazacağına biz kendi yazdığımız write fonksiyonu ile belirliyoruz.
+
+Write fonksiyonu
+--- 
+
+![image](https://user-images.githubusercontent.com/75746171/182615421-db636208-84a1-4a3b-b8d3-0d3c5aab5b5b.png)
+
+![image](https://user-images.githubusercontent.com/75746171/182615960-3187c2c0-70ea-4feb-8cf5-100285a31110.png)
+
+Putch Fonksiyonu
+---
+
+![image](https://user-images.githubusercontent.com/75746171/182618598-458ed15a-966a-425a-b02a-2870f9c41a30.png)
+
+- Bazı özellikler ekleyeceğiz, özel karakterlerde farklı davranabiliriz.
+
+- printf'in nereye yazacağı belli olmadığı için (mikrodenetleyici programlarında), terminali belirlemek bize bırakılmış.
+
+![image](https://user-images.githubusercontent.com/75746171/182629240-a864b08d-c80d-47d6-a58a-0e0957d24c2a.png)
+
+- printf write'ı çağırıyorsa, başka bir görevi yok mu neden biz çağırıyoruz?
+- prinft aslında formatlı yazıyor. Format açılımını yaparak (%'leri açarak) çözümleyerek formatsız string haline çevirip standart output dosyasına yazmak üzere bize gönderiyor. Amawrite fonksiyonun içerği de belli olmadığı için onu da biz yazıyoruz. Biz write fonksiyonun içeriğini öyle ayarladık ki çıkış LCD'de gözükecek. Biz farklı bir write fonksiyonu yazarak bu çıkışı UART'a gönderebilirdik. (Terminal açardık ve printf'in içeriğini pc'de görürdük)
+
+1.30
+
+
+
+
+
+
+
+
+
+
+
 
 
 
