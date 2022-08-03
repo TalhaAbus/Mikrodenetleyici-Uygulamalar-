@@ -639,12 +639,40 @@ LCDInit fonksiyonu
 ![image](https://user-images.githubusercontent.com/75746171/182358740-a7533a50-06ea-4451-b549-14c3b8c51b28.png)
 
 - Diğer ayarlar
+ 
+Ders 10
+---
+![image](https://user-images.githubusercontent.com/75746171/182578263-7ffb4a74-b428-4dfe-bf93-0dfaaff3b72a.png)
 
-1.50
+- İlerde LCD display yerine konsoldan Uart, oled display gibi ortamlar kullanacağız o yüzden genel bir consoleinit fonksiyonu yazalım.
+
+![image](https://user-images.githubusercontent.com/75746171/182594755-1d2c4c93-6ad6-4ea5-99b0-f7b1da022cfe.png)
+
+Console ile ilgili 3 tanımlama. 
+
+Printf nereye yazacak?
+
+- Aslında printf kendi içinde düşük seviyeli right fonksiyonunu çağırıyor. (Handle değeri olarak, stdout'u vererek). Write ın da nereye yazdığı belli değil. 
+- Write fonksiyonunu biz yazıyoruz, aslında printf olarak write çağırılıyor, bunun nereye gönderileceğine biz karar veriyoruz. Bizim yazmamız gereken şey write fonksiyonu. 
+- IAR __ write olarak kullanıyor. Write fonksiyonu standartlarda belirtilmiş bir fonksiyon değil. Ama sonradan bu stardart hale gelmiş. Write fonksiyonunu farklı derleyiciler bu fonksşyona direkt değil önüne _ koyarak kullanabiliyorlar.
+- Printf kullanmak projenin kod boyutunun büyümesine sebep olur fakat çok büyük avantajları vardır.
+- Bazı derleyiciler aşağıda putch'yı çağırıyor. Bu standart değil. Biz IAR derleyicisinin write fonksiyonunu çağırdığını biliyoruz ve kontrol altına alıyoruz.
+- Fakat burada printf bizim yazdığımız write fonksiyonunu çağırmıyor, biz yazmasak ta orada bir write fonksiyonu var. Biz write fonksiyonunun yeni bir versiyonun yaıyoruz. Boş bir write yerine dolusunu yazıyoruz.
+- Write fonksiyonu link aşamasında nasıl soruna yol açmıyor?
+- Derleyicinin özelliği. __ weak dediğimiz zaman bunun sadece weak versiyonunun yazılmasına linker izin veriyor ve sorun çıkmıyor. 2 tane versiyonu varsa ..
+
+![image](https://user-images.githubusercontent.com/75746171/182599925-439cb4e8-0fde-4580-b707-35023b2476fb.png)
+
+- Yani aslında bir yerde bu fonksiyonun weak ile tanımlamasını yapmışlar, biz bunu weak olmadan yazdığımızda ona overwrite yapmış oluyoruz. Bu durumda bağlamada problem çıkmıyor.
 
 
+![image](https://user-images.githubusercontent.com/75746171/182596775-d84c8f0e-4fee-4678-a4a4-1acebce10bbe.png)
 
+- Bunu bu şekilde çağırırsam printf bunu çağırır ama hiçbir şey olmaz.
 
+![image](https://user-images.githubusercontent.com/75746171/182597076-1752759d-dcaf-4489-a808-eba2041d86f0.png)
+
+- Burada ise standart tanımlamalara göre print edilen karakter sayısını döndürecek.
 
 
 
