@@ -709,6 +709,58 @@ Putch Fonksiyonu
 - printf write'ı çağırıyorsa, başka bir görevi yok mu neden biz çağırıyoruz?
 - prinft aslında formatlı yazıyor. Format açılımını yaparak (%'leri açarak) çözümleyerek formatsız string haline çevirip standart output dosyasına yazmak üzere bize gönderiyor. Amawrite fonksiyonun içerği de belli olmadığı için onu da biz yazıyoruz. Biz write fonksiyonun içeriğini öyle ayarladık ki çıkış LCD'de gözükecek. Biz farklı bir write fonksiyonu yazarak bu çıkışı UART'a gönderebilirdik. (Terminal açardık ve printf'in içeriğini pc'de görürdük)
 
+RS-232
+---
+- A ve B device
+- Taraflar birbirlerine 2 ayrı hat ile bağlılar. rx-tx. Toprak hatları ortak.
+- Endüstride çok kullanılmasının sebebi uzun mesafe haberleşmesine uygun olacak şekilde yüksek gerilim tanımlanmış olması.
+
+- Normalde TTL'de biz 1 için 3.3 - 5V 0 için 0 volt.
+
+- Genel olarak < 20 metre
+- RS232 elektriksel, mekanik, veri transfer özelliğklerini bulunduran birleşik bir protokoldür. RS485 - RS422 sadece elektriksel.
+- RS232 1 eksi gerilim 0 artı gerilim olarak çalışıyor.
+
+UART - USART
+---
+![image](https://user-images.githubusercontent.com/75746171/182835984-4d4c2595-bc69-4eef-98b3-cfad8563d7a2.png)
+
+- RS232 eksi gerilimi 1 olarak Artı gerilimi 0 olarak çeviriyor. RS232 Transceiver. MAX232 5V - MAX3232 3.3V seviyesinde.
+- Yani biz gerçek RS232 portuna UART bağlamak istiyorsak MAX3232 gibi bir çevirici kullanmamız lazım. İki taraf ta UART ise RS485 kullanmamıza gerek yok. Eğer RS485 çalışan bir cihaza bağlanmak istiyorsak çevirici kullanmamız lazım. MAX
+
+- UART < 5 metre
+- RS232 < 20 metre
+- RS485 Çok daha uzun mesafe. 1000 metre örnek
+
+- UART 2 şekilde kullanılabiliyor. Kart içi ve dışı.
+- Tipik kullanım hızları 1200 bps - 115200 bps
+
+Bu haberleşmenin kısıtları
+---
+Haberleşme sırasında veriler 0-1 olarka gönderildiği için, hattın kapasitesi arttıkça kareler eğilmeye bağlar. Bir noktadan sonra sinüse yakın bir duruma gelir. Okuyan tarafın bunu yanlış bulma ihtimali ortaya çıkar. Hat kapasitesi ile iletişim hızı ters orantılıdır.
+
+![image](https://user-images.githubusercontent.com/75746171/182837653-1bd3b844-4e81-419d-aa18-0b49b4898a2e.png)
+
+Örneğin:
+- UART ı işlemcinin 10 cm yakınında cihaza bağladığımda 1 milyon bps ile haberleşebilirm fakat 2m uzaktaki cihaza kablo ile bağladığı mzaman sorun çıkabilir.
+- Hat kapasitsini belirleyen ise kullanılan kablonun kalitesi ve kablonun uzunluğu.
+- Kablo uzadıkça koblonun toplam kapasitesi artacak bu da iletişim kalitesini etkileyecektir.
+
+Uart - RS232
+---
+
+Bir tanesi TTL, diğeri - ve +. Elektriksel kısımları farklı.
+Uart sadece mikrodenetleyici standartlarında kullanılan elektriksel değerleri kullandığı için sorun çıkarmıyor. ikrodenetleyicileri birbirini bağlamakta ve sensörlere bağlamakta yaygın olarak kullanılıyor. 
+- Seri haberleşmedir. AYnı anda tek bit gönderilebilir. 
+- Asenkronm haberleşmedir. Onaylama mekanizması, clock hattı ya da enable hattı bulunmuyor. sadece gönderme ve alma hattı olacak. 
+- Full Duplex bir haberleşmedir.
+
+![image](https://user-images.githubusercontent.com/75746171/182839315-bfeb38b6-a405-4e19-aff6-df2c2e8dd451.png)
+
+
+
+
+
 
 
 
