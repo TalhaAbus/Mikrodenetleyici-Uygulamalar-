@@ -709,7 +709,7 @@ Putch Fonksiyonu
 - printf write'ı çağırıyorsa, başka bir görevi yok mu neden biz çağırıyoruz?
 - prinft aslında formatlı yazıyor. Format açılımını yaparak (%'leri açarak) çözümleyerek formatsız string haline çevirip standart output dosyasına yazmak üzere bize gönderiyor. Amawrite fonksiyonun içerği de belli olmadığı için onu da biz yazıyoruz. Biz write fonksiyonun içeriğini öyle ayarladık ki çıkış LCD'de gözükecek. Biz farklı bir write fonksiyonu yazarak bu çıkışı UART'a gönderebilirdik. (Terminal açardık ve printf'in içeriğini pc'de görürdük)
 
-1.30
+
 
 
 
