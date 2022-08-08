@@ -746,6 +746,9 @@ Haberleşme sırasında veriler 0-1 olarka gönderildiği için, hattın kapasit
 - Hat kapasitsini belirleyen ise kullanılan kablonun kalitesi ve kablonun uzunluğu.
 - Kablo uzadıkça koblonun toplam kapasitesi artacak bu da iletişim kalitesini etkileyecektir.
 
+Ders 11
+---
+
 Uart - RS232
 ---
 
@@ -756,6 +759,66 @@ Uart sadece mikrodenetleyici standartlarında kullanılan elektriksel değerleri
 - Full Duplex bir haberleşmedir.
 
 ![image](https://user-images.githubusercontent.com/75746171/182839315-bfeb38b6-a405-4e19-aff6-df2c2e8dd451.png)
+
+- Uart ve RS232 birimini birbirine bağlıyorsak bunların aralarına bir dönnüştürücü koymamız gerekiyor.
+- Bu dönüştürücü elektriksel seviyeleri tersine çevirir , MAX232 5V TTL, MAX 3232 3.3V 
+
+![image](https://user-images.githubusercontent.com/75746171/183365644-079d7ae3-c381-4796-ad7d-a5335d04093f.png)
+
+Fakat biz farklı bir dönüştürücüye bağlayacağız. UART - USB serial çeviren bir dönüştürücü ile.  Ve diğer tarafını da PC'ye bağlayacağız.
+
+![image](https://user-images.githubusercontent.com/75746171/183365860-38f3488d-df60-46d9-8e7e-df944eb29f3b.png)
+
+- PC'ye bağlandığında PC'deki terminal programı aracılığı ile diğer tarafı UART seviyesinde bir seri haberleşme sağlıyor.
+- Eski zamanlardaki tüm pc'lerde RS232 portu vardı fakat artık yok. şimdi pc bağla ntısı için bu tür dönüştürücüler kullanıyoruz.
+
+
+- Seri haberleşmede Tx - RX hattındaki işaretin zmana göre değişmesi
+- Normal şartlar altında gerilim vdd seviyesinde (IDLE). 
+- Gönderme işlemi hattı 0'a çekerek başlıyor, T süresi boyunca.
+- Sonra dşük anlamlı bitten başlayarak  T süresi kadar hattı 1 veya 0 yapıyor.
+- En son data bitincen sonra en az 1 T lik bir boşluk lazım (STOP bit).
+
+![image](https://user-images.githubusercontent.com/75746171/183369317-25031964-d901-4fa5-bf99-e6a304291494.png)
+
+
+- En son gönderilen veri 0 olduğunda, alıcı taraf yeni bir veri gönderecek. Fakat hat zaten sıfır. O yüzden bu ihtimale karşı araya idle geçme boşluğu veriliyor. 
+- Yani son bit bittikten sonraen az 1T süre kadar bir beklemeyi zorunlu tutuyor
+![image](https://user-images.githubusercontent.com/75746171/183370240-386288aa-fc55-4542-a08c-a40af64143f7.png)
+
+IDLE'ın IDLE olduğu nereden anlaşılıyor?
+---
+- Haberleşme portları direkt 1'den başlıyorlar. Gönderen taraf hattı 1'de tuttuğu için alıcı taraf direkt 1'den başlıyor. Zaten haberleşme IDLE'dan başlıyor.
+- Harhangi bir start biti gelmediği sürece IDLE kabul edilir. Eğer start biti geldiyse de frame'in içinde olduğu için IDLE'da değil kabul ediliyor.
+
+![image](https://user-images.githubusercontent.com/75746171/183375022-a56a2d9f-58d4-4ea6-a9d2-bf49a61c05ce.png)
+
+İki tarafın baudrate'i doğru çalışmayor olsun:
+
+![image](https://user-images.githubusercontent.com/75746171/183382315-060145e4-9ae0-43c2-9971-7d1d0e32c23f.png)
+
+- Alıcı tarafın örnek alma anı her seferinde bir miktar sola kayacak. Yeni start biti ile birlikte hata resetlenir ve sıfırdan başlar. 
+- Buradaki hatalar frame in sonunda max değeri bulur.
+
+ Parity (EŞLİK)
+ ---
+
+- Bir hata belirleme algoritmasıdır.
+- Parity haberleşmesinin kullanılan bit oranına göre verimsizliği sabit olarak ortaya çıktıpı için (hata belirleme kapasitesinin düşüklüğü nedeniyle) neredeyse kullanılmıyor. 
+- Tek- çift olarak toplam 1 sayısının tek ya da çift olmasına göre bunu tek veya çifte tamamlama algoritmasıdır.
+
+![image](https://user-images.githubusercontent.com/75746171/183395908-0705b28c-7ce8-42bb-b8a6-5128f399ba44.png)
+
+- En zayıfı parity haberleşmesi, gönderilen bit oranına göre hata belirleme oranı çok düşük.
+- Checksum - Orta seviye. n byte gönderildikten sonra her bir n byte için tekrar k byte kadar toplam değeri eklenir. Modüler olarak toplanır. 
+- Alıcı taraf ta bu veriyi aldıktan sonra toplayarak karşılaştırır ve doğruluğuna bakar.
+
+![image](https://user-images.githubusercontent.com/75746171/183397520-e92a9b82-ecee-4b20-9eb8-d131c9818780.png)
+
+Checksum ve parity artık gözden düşen algoritmalar artık bunların yerini CRC aldı.
+
+1.24
+
 
 
 
