@@ -817,8 +817,49 @@ IDLE'ın IDLE olduğu nereden anlaşılıyor?
 
 Checksum ve parity artık gözden düşen algoritmalar artık bunların yerini CRC aldı.
 
-1.24
+UART Kod
+--
 
+Biz kendimiz bir UART konfigürasyon yapısı tanımlkayalım. Bu bizim daha basit bir şekilde kullanmamızı sağlayacak.
+
+![image](https://user-images.githubusercontent.com/75746171/183411098-31f8822a-d363-4e46-b7a8-921a7d8483c3.png)
+
+- TX pininin io indeksi, Bizim dipğer io library miz ile uyumlu bir yapı elde etmek istiyoruz.
+
+Bu veri türündeki elemanı tyanımlayalım.
+
+![image](https://user-images.githubusercontent.com/75746171/183411530-8ed64beb-9601-4f6e-a086-310042cefa4d.png)
+
+Port tanımlamaları
+
+![image](https://user-images.githubusercontent.com/75746171/183413895-b728170a-99a6-4a4c-9660-2a75eaad532f.png)
+
+Uart init fonksiyonu
+
+![image](https://user-images.githubusercontent.com/75746171/183414317-7fc8bee8-d4fb-4ebe-a700-b35bd9b318b9.png)
+
+- Firmalar arm cmsis yapısına uygun kalabilmek için kütüphanelerini buna uygun olarak tasarlıyorlar. 
+- Başlatmak structer ı var. Bu ilgili header dosyasında tanımlı. 
+
+Haberleşme
+---
+Seri haberleşmede gönderme ve alma işlemlerinde kullanılan shift registeri vardır. Burada gönderme ve alma işlemleri birbirinden bağımsız yapıldığından burada 2 register vardır.
+
+TSR'nin boş olduğunu varsayıyorum. Bu verileri TSR'ye biz yüklüyoruz. Star ve stop bitlerini ekledi. Düşük bitten başlayarak sağa doğru iterek iletti.
+
+![image](https://user-images.githubusercontent.com/75746171/183435970-cf35fb5a-5c5d-4892-9059-f166dddb7ed1.png)
+
+Veri gönderme
+
+![image](https://user-images.githubusercontent.com/75746171/183436326-87f29821-0a74-4fa1-9628-e6882ee9ce13.png)
+
+Ben veriyi yüklediğmide veri gidiyor. Bu yüzden yüklemenin bitip bitmediğini kontrol etmem gerekiyor.
+
+![image](https://user-images.githubusercontent.com/75746171/183436623-b2a2c994-f120-43bf-b22c-ac5de4edfcf3.png)
+
+- İlk parametre port indeksi. 2. parametre veri.
+
+2.27
 
 
 
