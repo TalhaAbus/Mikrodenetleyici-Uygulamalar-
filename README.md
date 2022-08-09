@@ -945,7 +945,9 @@ Bakcup Registers BKP
 - Bizim saniye sayacımız fakat bu backup domainde yer alması nedeniyle enerji kesilse bile busaymaya devam ediyor.
 - Belirli bir referanstan başlayarak şu ana kadar kaç saniye geçti.
 
-1.00
+DERS 16
+---
+
 
 
 
