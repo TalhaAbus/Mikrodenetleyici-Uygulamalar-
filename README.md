@@ -859,7 +859,63 @@ Ben veriyi yüklediğmide veri gidiyor. Bu yüzden yüklemenin bitip bitmediğin
 
 - İlk parametre port indeksi. 2. parametre veri.
 
-2.27
+Ders 12
+---
+
+![image](https://user-images.githubusercontent.com/75746171/183585761-6d74f022-9a11-471d-b504-f6cc663282c2.png)
+
+- Ver igönderme işlemi transmit shift register da yapılıyor ve alma işlemi REceive shift registerda yapılıyor.
+- Fakat biz doğrudan bu registra yüklemek yerine aradaki transmit data register a yükllüyoruz. (USART data register a veri attığımız zaman TDR ye aktarılıyor. Eğer tsr boşsa buradakiveri de tsr ye geçer).
+- Gönderme ve almada veri kaybı olmaması için biz aradaki tdr ve rdr den veriyi çekmemiz lazım. Bazı işlemcilerde bu registerlar daha fazla ve buradaki birikecek veri sayısı daha fazla oluyor. Fakat hepsi dolduktan sonra yeni veri geldiğinde üzerine yazılır ve veri hatalı aktarılır.
+
+![image](https://user-images.githubusercontent.com/75746171/183597218-8b6d7080-05f2-4c50-a0e2-891c7cca8dfd.png)
+
+- İlk önce inittypedef tanımlıyoruz. IO port modu.
+- Clock işareti sağlanır.
+- init yapısı
+- Çevresel aktifleştir.
+
+![image](https://user-images.githubusercontent.com/75746171/183601068-aea647db-306f-4192-847a-f29b22420441.png)
+
+- Aslında 1.5 T sonra örnekleme yapıyor demiştik fakat bu örnekleme tek bir noktada değil. Birden fazla noktada örnekleme yapmayı bekliyor ve hep aynı değeri bulmayı bekliyor. Eğer farklı değer okursa işarette bozukluk vafr demektir. Noise error flag stabil olmayan gürültülü bir işaret olduğu anlamına geliyor.
+- Frame error stop bitinin beyni gibidir. Stop biti olması gereken yerde 0 bulursa frame de bozukluk var demektir. Frame error hangi şartlarda ortaya çıkabilir?
+- Baudrate uyumsuzluğunda ortaya çıkabilir. Veri yolundaki problemlerde de çıkabilşr.
+- Parity kontrolü yapılyıorsa ve parity biti bozxuksa parity error çıkabilir.
+
+De bouncing
+---
+
+![image](https://user-images.githubusercontent.com/75746171/183614145-b07f39c2-d33d-499b-84da-b01c094fc730.png)
+
+Aradaki gürükltülerin giderilmesi işlemi 
+
+Başarının tekrarı sayacı:
+
+![image](https://user-images.githubusercontent.com/75746171/183615700-671aea18-c2d5-476d-a510-fb6f23f17244.png)
+
+Dezavantajı, De bouncing süresi kadar gecikme olması. Araya giren faz farkı.
+
+![image](https://user-images.githubusercontent.com/75746171/183616454-9bd14fb2-1a02-4576-9059-5d1bb2924e29.png)
+
+Bazı yerlerde butona heman basılmasından sonra bir delay fonksiyonu kullanılıyor. Bu da de bouncing in ilkel bir yoludur. Aslında bu kötü bir yöntem. Çünkü bu sıçramalar sadece başta ve sonda değil aralarda da olabilir.
+
+Kumanda örneği: Normalde tuşa basılmadığı müddetçe uyku modunda minimal enerji harcıyor.Tuşa basıldığında bu kesme ile uyanıyor, uyandıktan sonra debouncing uyguluyor olabilir. Tuş bırakıldıktan sonra da tekrar uyku moduna geçiyor. Yani interrupt + çift yönlü debouncing iyi bir yöntem.
+
+Tek yönlü debouncing  tuşa basma anının belirlenmesi sorgulanmaz. Hat sıfıra düşünce tuş bastı kabul edilir. Ve tuşa basıldıktan sonra tuşun bırakılması kontrol edilir. Yani sıçrama sadece tuşa basıldıktan sonra olduğu kabul edilir. 
+
+![image](https://user-images.githubusercontent.com/75746171/183619185-4eb584eb-561d-4ad2-8ff6-f80ca2d80216.png)
+
+Tek yönlü debouncing bu tür dalgaları da tuşa basılmış olarak kabul edebilşr. Bu bir dezavanatajdır fakat çok nadirdir.
+
+
+Çift yönlüde ise iki yönde de kontrol edilir.
+
+
+
+
+
+
+
 
 
 
