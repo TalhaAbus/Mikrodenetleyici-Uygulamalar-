@@ -910,14 +910,42 @@ Tek yönlü debouncing bu tür dalgaları da tuşa basılmış olarak kabul edeb
 
 Çift yönlüde ise iki yönde de kontrol edilir.
 
+Ders 13
+---
+Tüm elemanların bir ömrü vardır, elemanın türüne ve imal edilişine göre değişiyor. Kristal elemanının bile zamanla aşınması oluyor. MEekanik olarak titreşiyorlar ve agent parametreleri var zamanla bunların rezonans frekansları değişiyor.
 
+Button uygulaması
+---
 
+Tekrar et
 
+Ders 14
+---
 
+Real Time Clock
+---
 
+![image](https://user-images.githubusercontent.com/75746171/183636107-9901606a-e894-4384-a9c6-3c4beb90a543.png)
 
+- Sleep mode, sadece cpu duruyor. İşlem yapmayı kesiyor. Bir event gelene kadar. Fakat bu sırada tüm regulator ve system clocklar çalışmaya devam ediyor.
+- Stop mode, daha Yüksek güç kazancı, regulatorler düşük güç moduna geçer. CPU nun clock osilatorleri de duruyor bu sebeple external interrup durumunda çıkıyor. Saat işaretleri de durduğu için çevreseller de çalışmayı durduruyor. Fakat besleme gerilimleri eksilmediği için bunların hafızaları muhafaza ediliyor. 
+- Standby tamamen kapatma modu. Saat kesiliyor, regulatoler kesişliyor, VBAT hariç hepsi off durumuna geliyor. İşlemci softwaremode kapatma yöntemi.
 
+Bakcup Registers BKP
+---
 
+![image](https://user-images.githubusercontent.com/75746171/183637155-2bf0c285-5255-4d4a-a498-c5ded986653f.png)
+
+- C13 ucu farklı özelliklere sahip. Toplam akım verebilme kapasitesi daha düşük. Temper detection özelliği. Bazı durumlarda beckıp registerlarını sıfırlamak gerekebilir. 
+- Bu özellik default olarak aktif değil. Aktif hale getirdiğimizde temper pinine bir buton bağlayarak 0 ve 1 geçisinde backup registerlarını dışardan sıofırlamak için.
+
+![image](https://user-images.githubusercontent.com/75746171/183638251-a1da5e4a-4d8b-4f9b-8115-9e5bd12ad31a.png)
+
+- RTC ve RTCC. RTCC olunca takvim kısmı da var ama RTC sadece bir sayaç. 32 bit. Belirlediğimiz periyotta artan. 
+- Bizim saniye sayacımız fakat bu backup domainde yer alması nedeniyle enerji kesilse bile busaymaya devam ediyor.
+- Belirli bir referanstan başlayarak şu ana kadar kaç saniye geçti.
+
+1.00
 
 
 
