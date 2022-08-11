@@ -1054,6 +1054,9 @@ A5 - A6 - A7 , PB0 - PB1 - PB10 Display sırasına göre res - DC ve CS olarak k
 
 ![image](https://user-images.githubusercontent.com/75746171/184137747-4ae0003c-d45e-44b0-9a89-8571181eddf9.png)
 
+DERS 17
+---
+
 
 
 
