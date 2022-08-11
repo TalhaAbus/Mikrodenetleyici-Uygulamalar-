@@ -948,6 +948,132 @@ Bakcup Registers BKP
 DERS 16
 ---
 
+Semaphore 
+---
+- Bir işaretleşme mekanizması.
+- İki ayrı thread ortak bir veri alanını kullanıyor. Thread multitaskingde çalışan her bir kol.
+- A işini bitriince global alanını true yapar. B true yu görünce A nın işinin bittiğini görür ve işlemine kaldığı yerden devam eder.
+
+![image](https://user-images.githubusercontent.com/75746171/184075496-f64e9588-3258-44d9-b888-3f05bf08b249.png)
+
+Mutex
+---
+
+Kaynak var ve bu kaynağa ulaşmak isteyen farklı thread ler var. 
+
+![image](https://user-images.githubusercontent.com/75746171/184075922-a2f76b0f-9eaf-4a31-8813-80383614526f.png)
+
+Mutex 0 ise kaynak kullanımda değil. Kullanan thread onu 1 yapıyor ve meşgul hale getiriyor başkası geldiğinde blokeye giriyor.
+
+SPI - Serial peripheral interface
+---
+
+- En basit olmasına rağmen en kafa karıştırandır. 
+- Kabul görmüş bir standartı olmadığı için herkes farklı yorumlamış.
+- Büyük firmaların kabul gördüğü standartlardan kullanacağız.
+- Seri ve senkron bir haberleşmedir. (Haberleşen tarafların 1 tanesi saat işareti üretiyor ve ortak kullanılıyor.)
+- Haberleşme çift yönlü, full duplex.
+- Data exchange protokolüdür.
+
+![image](https://user-images.githubusercontent.com/75746171/184106137-bcebfc2c-17a1-4969-87ce-5881d87fba9e.png)
+
+- Her gönderdiğinde alır.
+- Çok yüksek hız gerektiren haberleşmelerde tercih edilir.
+
+![image](https://user-images.githubusercontent.com/75746171/184108117-a1f33733-6016-4f03-8925-c0ead422f762.png)
+
+- Seri haberleşmede saat işareti onay mekanizması olarak kullanılıyor.
+
+![image](https://user-images.githubusercontent.com/75746171/184108859-d8d62b44-2b98-4107-9e45-4cebcb01f42d.png)
+
+- R ve C parametreleri yükseldikçe işaret bozulmaya başlar. (Kareden uzaklaşır). Sıfırlar ve 1 lerin yerleri karışmay başlar.
+
+Hızlı olmasının sebebi :
+
+- Senkron olması, ortak saat vardır ve örnekleme zamanları tam ortaya gelecek şekilde ayarlarnmıştır.
+- Tarafların RC'si düşük. Daha keskin, yükselme ve düşme zamanları daha düşük.
+
+![image](https://user-images.githubusercontent.com/75746171/184109713-e8317a28-e4ef-4f74-a8be-64f3af9738f8.png)
+
+SPI bağlantısı tipik 4 hat.
+
+![image](https://user-images.githubusercontent.com/75746171/184111243-219b64cd-9b69-4910-890b-2bb93f5a5fe0.png)
+
+- 4 adet SPI modu var.
+- CPOL, IDLE durumunu belirliyor. CPOL 0 ise IDLE 0.
+
+![image](https://user-images.githubusercontent.com/75746171/184113593-c00d2bfe-3025-4279-93cc-0dfc6c6490e3.png)
+
+![image](https://user-images.githubusercontent.com/75746171/184113621-89f0b878-3766-4dae-bb98-4b81f4d58230.png)
+
+SPI Mode Number
+
+
+![image](https://user-images.githubusercontent.com/75746171/184113681-5da8a135-9664-4acc-aaaa-18b05bb39ecc.png)
+
+Haberlerşme şeması
+---
+
+![image](https://user-images.githubusercontent.com/75746171/184114030-35f6f10c-8890-4116-9038-2278d2026868.png)
+
+- Burada donanımsal olarak SS1, 2 ve 3 hatlarımız yok. Bunlar herhangi bir IO uçlarıdır.
+- SS1 i 0 da tuttuysam en üsttekini seçtim demektir. Clock hepsine bağlı oldğu için haberleşme hepsine gidiyor fakat diğerleri cevap vermeyecek.
+
+Gönderme ve alma aynı anda oluyorsa slave nasıl cevabı hazırlayıp gönderiyor?
+
+- Master soruyu soruyor aslında slave cevabı bir sonraki bytte gönderiyor.
+
+Not: Ölü pikseller, sürekli aynı pikseller kullanıldığında o piksellerin diğerlerine görekalibrasyonu bozulabiliyor.
+
+SSD1306 oled display
+---
+
+Biz aslında bir şey gönderdiğimiz zaman displayin RAM bölgesine yazıyoruz. O da kendi ramindeki bilgiyi eşleyerek displayde gösteriyor. Biz aslında ram ile irtibat kuruyoruz. Onun ram ile display arasında bir fiziksel elektronik devre var. 
+
+![image](https://user-images.githubusercontent.com/75746171/184129111-28d89c0d-eec6-4dc6-9e58-5b17e63d6d3c.png)
+
+Ya mod 0 ya da mod3 kullanmalıyız. Modu kullanacağımız elemana göre belirliyoruz.
+
+![image](https://user-images.githubusercontent.com/75746171/184129859-8818c8ed-526b-4126-9dd1-7717599614ba.png)
+
+- 128x64 her bir kesişim noktasında bir led var. Her bir page de 8 tane var. Her bir satırda 128 tane segment var. Herhangi bir piksele ulaşabilmek için o pikselin hangi page de olduğunu bulamız lazım. 
+- 111,25 noktasına gidelim. Page 3 ün 1. bitini ve segment 111 seçtiğim zaman ulaşıyorum.
+
+![image](https://user-images.githubusercontent.com/75746171/184130833-805e4a1a-05e1-49d3-ac1f-2a2c5622ccfb.png)
+
+- Öncelikle buradaki değeri kopyalamamız lazım. Sonra aldığım değerde değiştirmek istediğim yere karşılık gelen yeri maskeliyoruz ve tekrar geri yazıyoruz. 
+
+
+DC hatını 0 veya 1 de tutarak komut veya veri gönderiyoruz.
+
+![image](https://user-images.githubusercontent.com/75746171/184137061-87fa8607-234b-453f-85b8-23d29d1465c8.png)
+
+![image](https://user-images.githubusercontent.com/75746171/184137134-856005a4-7f3a-4b72-84b5-0d3e33a3c57c.png)
+
+A5 - A6 - A7 , PB0 - PB1 - PB10 Display sırasına göre res - DC ve CS olarak kullanılacak.
+
+![image](https://user-images.githubusercontent.com/75746171/184137747-4ae0003c-d45e-44b0-9a89-8571181eddf9.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
