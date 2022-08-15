@@ -1057,14 +1057,26 @@ A5 - A6 - A7 , PB0 - PB1 - PB10 Display sırasına göre res - DC ve CS olarak k
 DERS 17
 ---
 
+SPI haberleşmesinde 2 adet fonksiyon yazacağız.
+
+![image](https://user-images.githubusercontent.com/75746171/184605271-e697790b-4b23-4568-aa17-d811eb97f1f7.png)
+
+![image](https://user-images.githubusercontent.com/75746171/184605320-2cea3e96-9acc-4ae3-9153-4a72d96721a9.png)
 
 
+CPOL parametresi idle drumunu gösteriyor. CPHA leading edge ve traing adge belirliyor.
 
+![image](https://user-images.githubusercontent.com/75746171/184619264-efa274fa-b67d-414b-8be1-93ce7af5999f.png)
 
+- Bu display memory e karşılık gelecek. Display memory nin biz kendi RAM bölgemizde de bir kopyasını tutacağız.
+- Display den veri alamıyoruz. TEk bir bit yazmak istediğim zaman mümkün değil byte yazmak zorundayım. Bu yüzden yazılacak bölgenin eski halini bilmek zorundayım ki ona gçre maske ayarlayayım. Bu yüzden kopyasını tutmamız gerekir. 
+- Bu yüzden ne zaman display'e veri gönderirsem aynı zamanda kendi bölgemize de işleyeceğiz. 
 
+![image](https://user-images.githubusercontent.com/75746171/184619940-39cd87cf-6fa7-4aa6-b5bd-2a3bf3eae351.png)
 
+![image](https://user-images.githubusercontent.com/75746171/184637199-f1dd6900-8519-4d81-85b0-68033a1b7295.png)
 
-
+- Eğer değer 7 den büyükse yüksek anlamlı bitlerini kırpıyorum, 8 = 0 , 9 = 1 gibi. 
 
 
 
