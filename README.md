@@ -1078,7 +1078,7 @@ CPOL parametresi idle drumunu gösteriyor. CPHA leading edge ve traing adge beli
 
 - Eğer değer 7 den büyükse yüksek anlamlı bitlerini kırpıyorum, 8 = 0 , 9 = 1 gibi. 
 
- 
+ 1
 
 
 
