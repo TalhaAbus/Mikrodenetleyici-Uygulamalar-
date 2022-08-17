@@ -1078,7 +1078,10 @@ CPOL parametresi idle drumunu gösteriyor. CPHA leading edge ve traing adge beli
 
 - Eğer değer 7 den büyükse yüksek anlamlı bitlerini kırpıyorum, 8 = 0 , 9 = 1 gibi. 
 
- 1
+![image](https://user-images.githubusercontent.com/75746171/185150946-c0576bbf-e86b-450c-bd97-3aab2974a26e.png)
+
+- CPOL parametresi idle ın 0 veya 1 olduğunu, CPHA parametresi ise leading edge veya trading edge oldıuğunu belirliyor.
+- 
 
 
 
