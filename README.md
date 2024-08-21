@@ -1085,9 +1085,76 @@ CPOL parametresi idle drumunu gösteriyor. CPHA leading edge ve traing adge beli
 
 # UART (Universal Asynchronous Receiver/Transmitter)
 **Tanım**: UART, Asenkron veri iletişimi için kullanılan bir seri haberleşme protokolüdür.
-**Kullanım:** Genelde kısa mesafe
+**Kullanım:** Genelde kısa mesafeli, düşük hızlı veri iletiminde kullanılır. Bilgisayar ve mikrodenetleyiciler arası iletişim kurmak için uygundur.
+**Veri Çerçevesi:** Veri bitleri, başlangıç biti, durdurma biti, ve bazen parite bitini içerir.
+
+### Özellikleri:
+**Asenkron iletim:** Zamanlama sinyali olmadan veri gönderimi.
+**Basit Protokol:** Seri olarak veri gönderir ve alır.
+**Çift yönlü iletişim:** Aynı hatta hem veri gönderebilir hem de alabilir.
+
+## UART Nedir?
+- İki cihaz arası senkron iletişim sağlamak için kullanılan protokoldür. Asenkrondur. Bu sebeple veri iletimi sırasında saat sinyali gerekmez. Bunun yerine, veri çerçevesi içindeki bitler (başlangıç, durdurma bitleri) gönderici ile alıcı arasındaki zamanlamayı senkronize eder.
+## UART'ın Temel bileşenleri ve Veri Çerçevesi
+- **Başlangıç biti:** Verinin başladığını belirtir. Tek bir düşük (0) seviyesi olarak gönderilir.
+- **Veri Bitleri:** İletilen verinin kendisidir. Genellikle 5 - 9 bit arasıdır.
+- **Parity Biti:** Hata kontrolü için isteğe bağlı bir bittir. Veri bitleri içinde tek sayıda veya çift sayıda 1 bit olup olmadığını kontrol eder.
+- **Durdurma Biti:** Verinin sonlandığını belirtir. Genellikle yüksek (1) seviyesi olarak gönderilir ve 1 veya 2 bit olabilir.
+
+```C
+| Start Bit | Data Bit | Parity Bit | Stop Bit
+```
+## UART Kullanımının Avantajları
+**Basitlik:** UART, karmaşık bir saat sinyali gerektirmez ve basit bir donanımla uygulanabilir.
+**Çift Yönlü İletişim:** Aynı hat üzerinden veri gönderimi ve alımı sağlar.
+
+## UART'ın dezavantajları
+- **Düşüz Hız:** Diğer seri haberleşme protokollerine göre daha düşük veri iletim hızına sahiptir.
+- **Kısa Mesafe:** Genellikle kısa mesafeli iletişim için uygundur.
 
 
+## Örnek:
+```C
+#include <avr/io.h>
+#include <util/delay.h>
+
+#define F_CPU 16000000UL  // 16 MHz clock speed
+#define BAUD 9600
+#define MYUBRR F_CPU/16/BAUD-1
+
+void uart_init(unsigned int ubrr) {
+    // Baud rate ayarı
+    UBRR0H = (unsigned char)(ubrr>>8);
+    UBRR0L = (unsigned char)ubrr;
+    // Receiver ve Transmitter'ı etkinleştir
+    UCSR0B = (1<<RXEN0)|(1<<TXEN0);
+    // 8 bit veri formatı
+    UCSR0C = (1<<UCSZ01)|(1<<UCSZ00);
+}
+
+void uart_transmit(unsigned char data) {
+    // UDR0 register'ı boşalana kadar bekle
+    while (!(UCSR0A & (1<<UDRE0)));
+    // Veriyi gönder
+    UDR0 = data;
+}
+
+void uart_print(const char* str) {
+    while (*str) {
+        uart_transmit(*str++);
+    }
+}
+
+int main(void) {
+    uart_init(MYUBRR);
+    
+    while (1) {
+        uart_print("Hello, World!\n");
+        _delay_ms(1000);  // 1 saniye bekle
+    }
+}
+```
+- **Baud Rate Ayarı:** MYUBRR makrosu, UART baud rate'ini ayarlamak için kullanılan bir formüldür. Bu formül, mikrodenetleyicinin saat hızına (F_CPU) ve istenen baud hızına (BAUD) bağlıdır.
 
 
 
