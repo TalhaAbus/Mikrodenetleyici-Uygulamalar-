@@ -1083,6 +1083,9 @@ CPOL parametresi idle drumunu gösteriyor. CPHA leading edge ve traing adge beli
 - CPOL parametresi idle ın 0 veya 1 olduğunu, CPHA parametresi ise leading edge veya trading edge oldıuğunu belirliyor.
 - 
 
+# UART (Universal Asynchronous Receiver/Transmitter)
+**Tanım**: UART, Asenkron veri iletişimi için kullanılan bir seri haberleşme protokolüdür.
+**Kullanım:** Genelde kısa mesafe
 
 
 
